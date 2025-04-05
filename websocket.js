@@ -13,7 +13,7 @@ function setupWebSocket(server) {
               const data = JSON.parse(message);
               console.log('recived message', data);
   
-              if (data.type === 'desktopsContant') {
+              if (data.type === 'desktopsContant') {           // if data.type === 'desktopsContant'
                   
                   fs.readFile('contantDesktop.json', 'utf-8', (err, fileData) => {
                       if (err) {
@@ -24,12 +24,14 @@ function setupWebSocket(server) {
                           console.log("send desktop-pictures")
                       }
                   })
-               } else if (data.type === 'getContentDashbord') {
+               } else if (data.type === 'getContentDashbord') { // if data.type === 'getContentDashbord'
                   const isAutorized = true;
 
-                  if (isAutorized) {
+                  if (isAutorized) {                          // autorized ???
+
                       fs.readFile('dashbordFrontend.html', 'utf8', (err, fileData) => {
-                          if (err) {
+                         
+                      if (err) {
                               console.error('Fehler beim Laden der Datei:', err);
                               ws.send({ type: 'error', message: 'mistake by loading File'});
                          } else {
@@ -38,11 +40,13 @@ function setupWebSocket(server) {
                               
                           }
                       })
-                 } else {
+
+                  } else {
                       ws.send(JSON.stringify({type: 'error', message: 'no permittion'}))
                   } 
   
-              } else if (data.type === 'chatmessage') {
+              } else if (data.type === 'chatmessage') {         // if data.type === 'chatmessage'
+
                   try {
                       
                       console.log("data parsed", data)
@@ -52,14 +56,15 @@ function setupWebSocket(server) {
                   } catch (error) {
                       console.error("mistake:", error);
                   }
-              } else if (data.type === "CpuUsage") {
+
+              } else if (data.type === "CpuUsage") {            // if data.type === 'CpuUsage'
                   console.log("will send")
                   const cpus = {
-                      cpu1: 1,
+                      cpu1: 1,                          // in this expiriment i used to show the cpu Usage but is not perfectly.
                       cpu2: 1,
                       cpu3: 1,
                       cpu4: 1
-                 }
+                  }
   
                   function getCpuUsage() {
                       const cpus = os.cpus();
