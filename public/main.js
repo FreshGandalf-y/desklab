@@ -83,6 +83,7 @@ function showDashbord(error) {
   }
 }
 
+
 function seeDashboard() {
   if (ws.readyState === WebSocket.OPEN) {
     ws.send(JSON.stringify({ type: 'getContentDashbord'}))
@@ -93,9 +94,27 @@ function seeDashboard() {
   }
 }
 
+// joke- and normal-Alert
+
 function closeAlert() {
   document.getElementById("customAlert").style.display = "none";
+  nicepicture()
 }
+
+function nicepicture(arg) {
+  document.getElementById("nicepicture-Container").style.display = "flex";
+}
+
+function borderpicture(img) {
+  img.style.border = "3px solid red";
+  console.log("newborder")
+}
+
+function nicepictureRight() {
+  document.getElementById("nicepicture-Container").style.display = "none";
+  console.log("pictures are closed" )
+  alert("Error: not authentificated")
+};
 
 function commitSign_In(error) {
   const username = document.getElementById("userNameVerification")

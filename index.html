@@ -6,7 +6,7 @@
     <title>Desk-Top</title>
     <link href="/styles.css" rel="stylesheet">
     <script src="/main.js"></script>
-    <link rel="icon" type="image/x-icon" href="/img/Desktop-chat-favicon.ico">
+    <link rel="icon" type="image/x-icon" <href="/img/Desktop-chat-favicon.ico">
 </head>
 <body onload="username(), creatorname(), fullInfo(), desktopsContant()">
     <header >
@@ -30,10 +30,24 @@
         </div>
         
     </div>
+    <div class="nicepicture-container" id="nicepicture-Container">
+      <div class="alert-box">
+
+        <div class="nicePictures">
+          <img src="public/sourcedon´texist.jpeg" alt=".jpg" style="width:100px;height:70px;" class="borderpicture" onclick="borderpicture(this)"> 
+          <img src="public/sourcedon´texist.jpeg" alt=".jpg" style="width:100px;height:70px;" class="borderpicture" onclick="borderpicture(this)"> <br>
+          <img src="public/sourcedon´texist.jpeg" alt=".jpg" style="width:100px;height:70px;" class="borderpicture" onclick="borderpicture(this)"> 
+          <img src="public/sourcedon´texist.jpeg" alt=".jpg" style="width:100px;height:70px;" class="borderpicture" onclick="borderpicture(this)"> <br>
+        </div>
+        <h>select all pictures with a bicical</h> <br> <br>
+        <button onclick="nicepictureRight()">commit</button> <br> <br>
+        </div>
+    </div>
+
     <div style="display: flex; flex-wrap: wrap; justify-content: left;">
         <div class="newPic" id="">
             <div class="pic" id="picjs">
-                <img onclick="site(this)" class="picture"  src="/img/Bildschirmfoto_Desktop_Arch.png" alt="">
+                <img onclick="site(this)" class="picture"  src="img/Bildschirmfoto_Desktop_Arch.png" alt="">
             </div>
             <div class="" style="align-items: center; display: flex; flex-direction: row;">
                 <div class="maininfo" id="maininfojs">
@@ -41,7 +55,7 @@
                     <a>DeskUt: </a>
                 </div>
                 <div class="Usr" id="Usrjs">
-                    <img class="usrpic" id="" src="/img/WhatsApp_Béla.jpeg" alt="USR">
+                    <img class="usrpic" id="" src="img/WhatsApp_Béla.jpeg" alt="USR">
                     <a><span id="creatorName"></span></a>
                 </div>
             </div>
@@ -49,7 +63,7 @@
 
         <div class="newPic" id="">
             <div class="pic" id="picjs">
-                <img onclick="site(this)" class="picture"  src="/img/somethingLinux.jpg" alt="">
+                <img onclick="site(this)" class="picture"  src="img/somethingLinux.jpg" alt="">
             </div>
             <div class="" style="align-items: center; display: flex; flex-direction: row;">
                 <div class="maininfo" id="maininfojs">
@@ -130,6 +144,6 @@
         </div>
     </div>
 
-
+  
 </body>
 </html>

@@ -45,17 +45,15 @@ function setupWebSocket(server) {
                       ws.send(JSON.stringify({type: 'error', message: 'no permittion'}))
                   } 
   
-              } else if (data.type === 'chatmessage') {         // if data.type === 'chatmessage'
+              } else if (data.type === 'chatmessage') {         // if data.type === 'chatmessage
+                try {
+                  console.log("data parsed", data)
+                    
+                  ws.send(JSON.stringify({type: 'chatResponse', data}));
 
-                  try {
-                      
-                      console.log("data parsed", data)
-                      //await axios.post('http://localhost:5002/save', data);
-                      ws.send(JSON.stringify({type: 'chatResponse', data}))
-      
-                  } catch (error) {
-                      console.error("mistake:", error);
-                  }
+                } catch (error) {
+                    console.error("mistake:", error);
+                }
 
               } else if (data.type === "CpuUsage") {            // if data.type === 'CpuUsage'
                   console.log("will send")

@@ -9,7 +9,16 @@
   "author": "Béla Langner",
   "license": "ISC",
   "dependencies": {
+    "mysql": "^2.18.1",
     "websocket": "^1.0.35",
     "ws": "^8.18.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FreshGandalf-y/desklab.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FreshGandalf-y/desklab/issues"
+  },
+  "homepage": "https://github.com/FreshGandalf-y/desklab#readme"
 }
