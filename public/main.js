@@ -16,7 +16,7 @@ var ipServer = "localhost"
 var valueForWs;
 
 
-const ws = new WebSocket("ws://" + location.host)
+const ws = new WebSocket("ws://" + location.host + '/ws/')
 
 ws.onopen = function () {
   console.log("we are connected");
