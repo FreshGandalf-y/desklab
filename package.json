@@ -9,7 +9,7 @@
   "author": "Béla Langner",
   "license": "ISC",
   "dependencies": {
-    "mysql": "^2.18.1",
+    "mysql2": "^3.14.0",
     "websocket": "^1.0.35",
     "ws": "^8.18.1"
   },
