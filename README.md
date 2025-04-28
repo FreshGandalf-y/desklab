@@ -4,7 +4,7 @@ Desklab is only a full-stack webui for a chatfunktion and something else i use i
 
 ## Wy? 
 
-So, i don´t knew what is your bennefit from this Project, i use it to program on my main pc and pull it to my raspberry pi. 
+So, i don´t know what is your benefit from this Project, i use it to program on my main pc and pull it to my raspberry pi. 
 
 ## how to install? 
 
@@ -23,7 +23,7 @@ node index.js
 
 ## how to set ub your database?
 
-database funktion dosn´t work yet, so i do not have a .config 
+database-function don´t work yet, so i do not have a .config 
 
 ## websocket? 
 
