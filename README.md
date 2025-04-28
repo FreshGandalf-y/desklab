@@ -19,6 +19,7 @@ npm install
 
 ```bash 
 node index.js 
+```
 
 ## how to set ub your database?
 
@@ -34,12 +35,4 @@ Yes! it works now! i love it...
 - database
 - flexibility
 - more nice css
-- user function 
-```
-```
-``` 
-``` 
-```
-```
-```
-
+- user function
