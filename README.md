@@ -21,7 +21,7 @@ npm install
 node index.js 
 ```
 
-## how to set ub your database?
+## how to set up your database?
 
 database-function don´t work yet, so i do not have a .config 
 
