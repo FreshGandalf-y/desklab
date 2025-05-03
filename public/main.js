@@ -32,7 +32,7 @@ ws.onmessage = function (event) {
     document.getElementById('dynamicDashbord').src = url;
     
   } else if (data.type === 'error') {
-    console.error('Mistake', + data.message);
+    console.log('Mistake', data.message);
   } else if (data.type === 'chatResponse') {
     console.log("chatresponse recived")
     var commanduser = data.data.myusrName

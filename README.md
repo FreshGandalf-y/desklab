@@ -13,7 +13,7 @@ So, i don´t know what is your benefit from this Project, i use it to program on
 git clone https://github.com/FreshGandalf-y/desklab.git
 npm install
 ```
-```
+
 
 ## run it 
 
@@ -27,7 +27,7 @@ database-function don´t work yet, so i do not have a .config
 
 ## websocket? 
 
-Yes! it works now! i love it...
+Yes! it works now! 
 
 ## Future? 
 

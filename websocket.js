@@ -1,5 +1,6 @@
 const WebSocket = require('ws');
 const fs = require('fs');
+const { saveMessage } = require('./database/cmdprocesing.js'); 
 
 function setupWebSocket(server) {
   const wss = new WebSocket.Server({server});
@@ -30,37 +31,42 @@ function setupWebSocket(server) {
                   if (isAutorized) {                          // autorized ???
 
                       fs.readFile('dashbordFrontend.html', 'utf8', (err, fileData) => {
-                         
+
                       if (err) {
-                              console.error('Fehler beim Laden der Datei:', err);
-                              ws.send({ type: 'error', message: 'mistake by loading File'});
-                         } else {
-                             ws.send(JSON.stringify({type: 'contant', html: fileData}));
-                              console.log("Dashbord send")
-                              
-                          }
-                      })
+                        console.error('Fehler beim Laden der Datei:', err);
+                        ws.send({ type: 'error', message: 'mistake by loading File'});
+
+                        } else {
+                          ws.send(JSON.stringify({type: 'contant', html: fileData}));
+                          console.log("Dashbord send");
+                        };
+                      });
 
                   } else {
                       ws.send(JSON.stringify({type: 'error', message: 'no permittion'}))
-                  } 
-  
-              } else if (data.type === 'chatmessage') {         // if data.type === 'chatmessage
+                  }; 
+
+              } else if (data.type === 'chatmessage' && message.data) {         // if data.type === 'chatmessage
                 try {
-                  console.log("data parsed", data)
-                    
+                  const { myusrName, theLastCommand, datetime } = message.data;
+
+                  console.log("recived values:", myusrName, the, datetime); // Debug
+
+                  if (!myusrName || !theLastCommand || !datetime) {
+                    console.error('missing fields', message.data);
+                    return;
+                  };
+                  saveMessage({ myusrName, theLastCommand, datetime });
                   ws.send(JSON.stringify({type: 'chatResponse', data}));
 
                 } catch (error) {
                     console.error("mistake:", error);
-                }
+                };
 
               } else if (data.type === "CpuUsage") {   // if data.type === 'CpuUsage'
+                // sone...
+              };
 
-
-              }
-
-  
           } catch (error) {
               console.error('mistake', error)
           }
@@ -71,4 +77,5 @@ function setupWebSocket(server) {
     });
   });
 };
+
 module.exports = { setupWebSocket };
