@@ -29,4 +29,13 @@ function saveMessage({ myusrName, theLastCommand, datetime }) {
   })
 };
 
+//function readMessages(arg) {
+//  console.log("request:");
+
+  
+//  const select = 'SELECT * FROM ';
+//  var reqsql =                      // hier soll der befehl zusammengestellt werden. 
+//  const output = connection.query(reqsql, )
+//};
+
 module.exports = { saveMessage }; 

@@ -15,6 +15,7 @@ const date = Date()
 var ipServer = "localhost"
 var valueForWs;
 
+//  
 
 const ws = new WebSocket("ws://" + location.host + '/ws/')
 
