@@ -29,13 +29,35 @@ function saveMessage({ myusrName, theLastCommand, datetime }) {
   })
 };
 
-//function readMessages(arg) {
-//  console.log("request:");
+function readMessages(arg) {
+  console.log("request message:");
+  if (arg.time === "last 20 messages") {
 
-  
-//  const select = 'SELECT * FROM ';
-//  var reqsql =                      // hier soll der befehl zusammengestellt werden. 
-//  const output = connection.query(reqsql, )
-//};
+  } else if (arg.time === "last 50 messages") {
 
+  } else if (arg.time === "last 100 messages") {
+
+  } else if (arg.time === "last 200 messages") {
+
+  } else if (arg.time === "last 300 messages") {
+
+  } else if (arg.time === "last Hour") {
+
+  } else if (arg.time === "last hour") {
+
+  } else if (arg.time === "last 3 hours") {
+
+  } else if (arg.time === "last 5 hours") {
+
+  } else if (arg.time === "last 12 hours") {
+    
+  } else {
+    console.log('something went nasty in readMessages');
+  }
+  const select = 'SELECT * FROM ';
+  var reqsql =                      // hier soll der befehl zusammengestellt werden. 
+  const output = connection.query(reqsql, )
+};
+
+module.exports = { readMessages };
 module.exports = { saveMessage }; 

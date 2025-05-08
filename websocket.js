@@ -1,6 +1,7 @@
 const WebSocket = require('ws');
 const fs = require('fs');
 const { saveMessage } = require('./database/cmdprocesing.js'); 
+const { readMessages } = require('./database/cmdprocesing.js')
 
 function setupWebSocket(server) {
   const wss = new WebSocket.Server({server});
@@ -11,8 +12,8 @@ function setupWebSocket(server) {
       ws.on("message", async function (message) {
           
           try {
-              const data = JSON.parse(message);
-              console.log('recived message');
+              const data = JSON.parse(message
+              console.log('recived message', data);
   
               if (data.type === 'desktopsContant') {           // if data.type === 'desktopsContant'
                   
@@ -60,10 +61,14 @@ function setupWebSocket(server) {
                   ws.send(JSON.stringify({type: 'chatResponse', data}));
 
                 } catch (error) {
-                    console.error("mistake:", error);
+                    console.error("mistake:", error); 
                 };
 
-              } else if (data.type === "CpuUsage") {   // if data.type === 'CpuUsage'
+              } else if (data.type === 'messageresponse') {                     // response messages
+                console.log('the client whants something:', data.type);
+                readMessages(data.data);                                        // data requires data.data.time: "last hour", "last 3 hours", "last 5 hours", "last 12 hours", "last Day", "last 2 Days"
+              
+              } else if (data.type === "CpuUsage") {                            // if data.type === 'CpuUsage'
                 // sone...
               };
 
