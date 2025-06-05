@@ -1,10 +1,10 @@
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "belalangner",
-  password: "jesusdb",
-  database: "chatchronic"
+  host: process.env.BD_HOST || "localhost",
+  user: process.env.DB_USER || "belalangner",
+  password: process.env.DB_PASS || "jesusdb",
+  database: process.env.DB_NAME || "chatchronic"
 });
 
 connection.connect((err) => {
@@ -17,10 +17,10 @@ connection.connect((err) => {
 })
  
 function saveMessage({ myusrName, theLastCommand, datetime }) {
-  console.log("recived message:", myusrName, theLastCommand, datetime); // Debug 
+  console.log("recived message @:", myusrName, theLastCommand, datetime); // Debug 
 
-  const sql = 'INSERT INTO chatmessages (username, message, time_sent) VALUES (?, ?, ?)';
-  connection.query(sql, [myusrName, theLastCommand, datetime], (err) => {
+  const sql = 'INSERT INTO openchat (username, message, CURRENT_TIMESTAMP) VALUES (?, ?)';
+  connection.query(sql, [myusrName, theLastCommand], (err) => {
     if (err) {
       console.error("something went wrong:", err.message);
     } else {
@@ -29,35 +29,37 @@ function saveMessage({ myusrName, theLastCommand, datetime }) {
   })
 };
 
-function readMessages(arg) {
-  console.log("request message:");
-  if (arg.time === "last 20 messages") {
+  //function readMessages(arg) {
+  //console.log("request message:");
 
-  } else if (arg.time === "last 50 messages") {
+  //if (arg.time === "last 20 messages") {
+  //  readSQL(20);
+  //} else if (arg.time === "last 50 messages") {
+  //  readSQL(50);
+  //} else if (arg.time === "last 100 messages") {
+  //  readSQL(100);
+  //} else if (arg.time === "last 200 messages") {
+  //  readSQL(200);
+  //} else if (arg.time === "last 300 messages") {
+  //  readSQL(300);
+  //} else if (arg.time === "last Hour") {
 
-  } else if (arg.time === "last 100 messages") {
+  //} else if (arg.time === "last hour") {
 
-  } else if (arg.time === "last 200 messages") {
+  //} else if (arg.time === "last 3 hours") {
 
-  } else if (arg.time === "last 300 messages") {
+  //} else if (arg.time === "last 5 hours") {
 
-  } else if (arg.time === "last Hour") {
-
-  } else if (arg.time === "last hour") {
-
-  } else if (arg.time === "last 3 hours") {
-
-  } else if (arg.time === "last 5 hours") {
-
-  } else if (arg.time === "last 12 hours") {
+  //} else if (arg.time === "last 12 hours") {
     
-  } else {
-    console.log('something went nasty in readMessages');
-  }
-  const select = 'SELECT * FROM ';
-  var reqsql =                      // hier soll der befehl zusammengestellt werden. 
-  const output = connection.query(reqsql, )
-};
+  //} else {
+  //  console.log('something went nasty in readMessages');
+  //}
+  
+  function readSQL(arg) {
+  //  const selectedMessages = connection.query('SELECT * FROM 'chatchronic' ORDER BY id DESC LIMIT ${arg}');        // is that right? i think i have to use a other connection... right? 
 
-module.exports = { readMessages };
+  }
+
+//module.exports = { readMessages };
 module.exports = { saveMessage }; 

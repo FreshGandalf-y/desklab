@@ -12,7 +12,7 @@ function setupWebSocket(server) {
       ws.on("message", async function (message) {
           
           try {
-              const data = JSON.parse(message
+              const data = JSON.parse(message);
               console.log('recived message', data);
   
               if (data.type === 'desktopsContant') {           // if data.type === 'desktopsContant'
@@ -47,7 +47,7 @@ function setupWebSocket(server) {
                       ws.send(JSON.stringify({type: 'error', message: 'no permittion'}))
                   }; 
 
-              } else if (data.type === 'chatmessage' && message.data) {         // if data.type === 'chatmessage
+              } else if (data.type === 'chatmessage' && message.data) {         // if data.type === 'chatmessage'
                 try {
                   const { myusrName, theLastCommand, datetime } = message.data;
 
@@ -66,9 +66,9 @@ function setupWebSocket(server) {
 
               } else if (data.type === 'messageresponse') {                     // response messages
                 console.log('the client whants something:', data.type);
-                readMessages(data.data);                                        // data requires data.data.time: "last hour", "last 3 hours", "last 5 hours", "last 12 hours", "last Day", "last 2 Days"
+                readMessages(data.data);                                        // data requires data.time: "last hour", "last 3 hours", "last 5 hours", "last 12 hours", "last Day", "last 2 Days"
               
-              } else if (data.type === "CpuUsage") {                            // if data.type === 'CpuUsage'
+              } else if (data.type === "CpuUsage") {                            // if data.type === 'e
                 // sone...
               };
 

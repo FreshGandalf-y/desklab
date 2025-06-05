@@ -2,8 +2,11 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const { setupWebSocket } = require('./websocket.js');
-
 const publicDir = path.join(__dirname, 'public');
+
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 
 const mimeTypes = {
   '.html': 'text/html',

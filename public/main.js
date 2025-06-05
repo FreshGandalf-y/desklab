@@ -25,7 +25,6 @@ ws.onopen = function () {
 
 ws.onmessage = function (event) {
   const data = JSON.parse(event.data);
-
   if (data.type === 'contant') {
     console.log("html data arrived (Dashbord)", data)
     let blob = new Blob([data.html], { type: "text/html"});
