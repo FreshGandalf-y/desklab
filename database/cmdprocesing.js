@@ -1,8 +1,8 @@
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
-  host: process.env.BD_HOST || "localhost",
-  user: process.env.DB_USER || "belalangner",
+  host: process.env.BD_HOST || "127.0.0.1",
+  user: process.env.DB_USER || "Josef",
   password: process.env.DB_PASS || "jesusdb",
   database: process.env.DB_NAME || "chatchronic"
 });
