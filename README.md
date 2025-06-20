@@ -1,10 +1,10 @@
-# desklab
 
-Desklab is only a full-stack webui for a chatfunktion and something else i use in my homelab. 
+desklab is a full-stack w´webserver with a chatfunktion and something else i use in my homelab. 
 
 ## Wy? 
 
-So, i don´t know what is your benefit from this Project, i use it to program on my main pc and pull it to my raspberry pi. 
+Desklab started as a personal playground and development environment. I develop and test it on my main PC, then deploy it to my Raspberry Pi to run in my local network.  
+So... I don´t knew what´s your bennefit for this project. 
 
 ## how to install? 
 
@@ -23,16 +23,24 @@ node index.js
 
 ## how to set up your database?
 
-database-function don´t work yet, so i do not have a .config 
+database-function don´t work with .conf but .env 
 
 ## websocket? 
 
 Yes! it works now! 
 
+## ⚙️ Requirements
+
+- [Node.js](https://nodejs.org/) (version 18 or higher recommended)
+- [npm](https://www.npmjs.com/)
+- MySQL ore MariaDB database
+- Optional: Raspberry Pi or any Linux server for .service File 
+
+
 ## Future? 
 
 - .config
-- database
 - flexibility
 - more nice css
 - user function
+- End to End 

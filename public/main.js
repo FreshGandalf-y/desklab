@@ -15,7 +15,7 @@ const date = Date()
 var ipServer = "localhost"
 var valueForWs;
 
-//  
+
 
 const ws = new WebSocket("ws://" + location.host + '/ws/')
 
@@ -32,18 +32,16 @@ ws.onmessage = function (event) {
     document.getElementById('dynamicDashbord').src = url;
     
   } else if (data.type === 'error') {
-    console.log('Mistake', data.message);
+    console.log('Error:', data.message);
   } else if (data.type === 'chatResponse') {
-    console.log("chatresponse recived")
-    var commanduser = data.data.myusrName
-    var command = data.data.theLastCommand
-    var timeUser = data.data.datetime
+    console.log("chatresponse recived", data)
+    writeMessages(data.response);
 
-    console.log(commanduser, command, timeUser)
-    //document.getElementById("lastCommandspace").innerHTML = commanduser, command, timeUser;
   } else if (data.type === 'desk-topsContant') {
     console.log("desktops recived", data.html)
     //for (const deskt in data.Dea)
+  } else if (data.type === 'messageBuffer') {
+
   } else {
     console.log('incorrect message')
     ws.send('incorrect message')
@@ -116,7 +114,7 @@ function nicepictureRight() {
   alert("Error: not authentificated")
 };
 
-function commitSign_In(error) {
+function commitSign_In(err) {
   const username = document.getElementById("userNameVerification")
   const password = document.getElementById("passwordVerification")
 
@@ -125,8 +123,8 @@ function commitSign_In(error) {
     passWord: password,
   };
   ws.send(JSON.stringify(data));
-  if (error) {
-    console.log(error)
+  if (err) {
+    console.error(err)
   } else {
     console.log("send usernames to Server succed")
   }
@@ -158,19 +156,61 @@ function creatorname() {
 
 document.addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
-    
     chatcontant()
   }
 })
 
 function chatcontant() {
-  var lastmesage = document.getElementById("input")
-  var value = lastmesage.value
-  console.log("last command: " + value)
-  commandToWs(value)
-}
+  var lastmesage = document.getElementById("input");
+  var value = lastmesage.value;
+  console.log("last command: " + value);
+  commandToWs(value);
+};
+
+function grabCommants() {
+  try {
+   ws.send(JSON.stringify({ 
+    type: 'lastMsgResponse',
+    time: 'last 20 messages'
+  }));
+  } catch (err) {
+    console.error(err)
+  }
+};
+
+function writeMessages(message) {
+  
+  console.log('Typ:', typeof message)
+  console.log('Array.isArray:', Array.isArray(message));
+  try {
+    const container = document.getElementById("chatcontainer");
+    const overflow = document.getElementById("overflowscroll");
+    
+    if (!Array.isArray(message)) {
+      console.error("writeMessage whants to have a Array!")
+      return;
+    }
+    const reversed = message.slice().reverse();
+
+    reversed.forEach(obj => {
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('chat-message');
+      
+      const time = new Date(obj.timestamp).toLocaleString();
+
+      messageDiv.innerHTML = `
+        <p><strong>- ${obj.username}</strong> <em>(${time})</em></p>
+        <h1>${obj.lastcommand}</h1>
+      `;
+      container.appendChild(messageDiv);
+    });
+    overflow.scrollTop = overflow.scrollHeight;
+  } catch (err) {
+    console.error(err);
+  }
+} 
 
 function commandToWs(arg) {
-    valueForWs = arg
-    sendData()
-}
+    valueForWs = arg;
+    sendData();
+};

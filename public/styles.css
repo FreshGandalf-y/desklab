@@ -170,18 +170,37 @@ header {
     flex-direction: column;
     box-shadow: 10px, 10px;
 }
+.overflowScroll {
+    overflow: scroll;
+    position: relative;
+    height: 270px;
+    width: 320px;
+}
 
 .line{
     display: flex;
     width: 100%;
     caret-color: #33cc33;
+    position: relative;
+}
+
+.line button :hover {
+    cursor: pointer;
 }
 
 .terminall span{
     display: table-cell;
     color: #658d1c;
 }
+.chatContainer p {
+    color: #5c8a8a;
+    font-size: small;
+}
 
+.chatContainer h1 {
+    color: #c65353;
+    font-size: medium;
+}
 .terminall input {
     display: table-cell;
     width: 100%;

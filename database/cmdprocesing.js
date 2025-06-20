@@ -1,7 +1,7 @@
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
-  host: process.env.BD_HOST || "localhost",
+  host: process.env.BD_HOST || "127.0.0.1",
   user: process.env.DB_USER || "belalangner",
   password: process.env.DB_PASS || "jesusdb",
   database: process.env.DB_NAME || "chatchronic"
@@ -12,54 +12,64 @@ connection.connect((err) => {
     console.error("connection refused", err.message);
     process.exit(1);
   } else {
-    console.log("conneted to database ");
+    console.log("conneted to database: ");
   }
 })
- 
-function saveMessage({ myusrName, theLastCommand, datetime }) {
-  console.log("recived message @:", myusrName, theLastCommand, datetime); // Debug 
 
-  const sql = 'INSERT INTO openchat (username, message, CURRENT_TIMESTAMP) VALUES (?, ?)';
+function saveMessage({ myusrName, theLastCommand }) {
+
+  const sql = 'INSERT INTO openchat (username, lastcommand) VALUES (?, ?)';
   connection.query(sql, [myusrName, theLastCommand], (err) => {
     if (err) {
       console.error("something went wrong:", err.message);
     } else {
-      console.log('last command saved: ${myusrName}: ${theLastCommand}');
+      console.log('\x1b[33mcommand:\x1b[0m', myusrName, theLastCommand);
     }
   })
 };
 
-  //function readMessages(arg) {
-  //console.log("request message:");
+async function readMessages(jsoninput) {
+  console.log("request message:", jsoninput);
 
-  //if (arg.time === "last 20 messages") {
-  //  readSQL(20);
-  //} else if (arg.time === "last 50 messages") {
-  //  readSQL(50);
-  //} else if (arg.time === "last 100 messages") {
-  //  readSQL(100);
-  //} else if (arg.time === "last 200 messages") {
-  //  readSQL(200);
-  //} else if (arg.time === "last 300 messages") {
-  //  readSQL(300);
-  //} else if (arg.time === "last Hour") {
-
-  //} else if (arg.time === "last hour") {
-
-  //} else if (arg.time === "last 3 hours") {
-
-  //} else if (arg.time === "last 5 hours") {
-
-  //} else if (arg.time === "last 12 hours") {
-    
-  //} else {
-  //  console.log('something went nasty in readMessages');
-  //}
-  
-  function readSQL(arg) {
-  //  const selectedMessages = connection.query('SELECT * FROM 'chatchronic' ORDER BY id DESC LIMIT ${arg}');        // is that right? i think i have to use a other connection... right? 
-
+  function readSQL(limit) {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        'SELECT * FROM openchat ORDER BY id DESC LIMIT ?',
+        [limit], 
+        (err, results) => {
+          if (err) reject(err);
+          else resolve(results);
+        }
+      )
+    })
   }
 
-//module.exports = { readMessages };
-module.exports = { saveMessage }; 
+  switch (jsoninput.time) {
+    case "last 20 messages":
+      return readSQL(20);
+    case "last 50 messages":
+      return readSQL(50);
+    case "last 100 messages":
+      return readSQL(100);
+    case "last 200 messages":
+      return readSQL(200);
+    case "last 300 messages":
+      return readSQL(300);
+    // later a few hour-cases:
+    case "lasthour":
+    case "last 2 hours":
+    case "last 3 hours":
+    case "last 5 hours":
+    case "last 12 hours":
+      console.log('Time is not implemented');
+      return [];
+    default:
+      console.log('unknown param in readMessages', jsoninput);
+      return [];
+
+  }
+}
+  module.exports = { 
+    readMessages,
+    saveMessage 
+  }; 

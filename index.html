@@ -8,7 +8,7 @@
     <script src="/main.js"></script>
     <link rel="icon" type="image/x-icon" <href="/img/Desktop-chat-favicon.ico">
 </head>
-<body onload="username(), creatorname(), fullInfo(), desktopsContant()">
+<body onload="username(), creatorname(), fullInfo(), desktopsContant(), grabCommants()">
     <header >
         <a href="/" class="logo">Desk-Top!</a>
        <a class="contact" onclick="showDashbord()"> connection to <span style="color: #669999; padding-right: 5px; padding-left: 5px;"  id="ipAdress"></span> <span id="connection?" ></span></a>
@@ -133,12 +133,13 @@
 
     <div >
         <div id="terminal" class="terminall" rows="20">
-            <div >
-                <a class="lastcommandspace"> <span  id="lastCommandSpace"></span></a>
+            <div class="overflowScroll" id="overflowscroll">
+                <div id="chatcontainer" class="chatContainer"></div>
             </div>
             <div class="line">
                 <a> <span id="usrl"></span> </a>
                 <input  id="input" type="text">
+                <button onclick="chatcontant()">✈️</button>
             </div>
 
         </div>
