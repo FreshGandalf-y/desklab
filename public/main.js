@@ -94,9 +94,21 @@ function seeDashboard() {
 
 // joke- and normal-Alert
 
-function closeAlert() {
-  document.getElementById("customAlert").style.display = "none";
-  nicepicture()
+function closecontainer(id) {
+  document.getElementById(id).style.display = "none";
+  if (id === "customAlert") {
+    nicepicture()
+  }
+}
+
+function showcontainer(id) {
+  document.getElementById(id).style.display = "flex";
+  console.log(id);
+  if (id === "terminal") {
+    document.getElementById(id).style.position = "absolute";
+    document.getElementById(id).style.top = "360px";
+    document.getElementById(id).style.right = "60px";
+  }  
 }
 
 function nicepicture(arg) {
@@ -114,7 +126,7 @@ function nicepictureRight() {
   alert("Error: not authentificated")
 };
 
-function commitSign_In(err) {
+function commitSignIn(err) {
   const username = document.getElementById("userNameVerification")
   const password = document.getElementById("passwordVerification")
 
@@ -122,7 +134,7 @@ function commitSign_In(err) {
     userName: username,
     passWord: password,
   };
-  ws.send(JSON.stringify(data));
+  ws.send(JSON.stringify({type: 'userVerification' ,data}));
   if (err) {
     console.error(err)
   } else {
@@ -155,16 +167,26 @@ function creatorname() {
 }
 
 document.addEventListener("keydown", function(event) {
-  if (event.key === "Enter") {
-    chatcontant()
+  const flex = document.getElementById("terminal").style.display;
+  if (flex === "flex") {
+    if (event.key === "Enter") {
+      chatcontant()
+    }
+  } else {
+    console.log("no usable function for this key")
   }
 })
 
 function chatcontant() {
   var lastmesage = document.getElementById("input");
   var value = lastmesage.value;
-  console.log("last command: " + value);
-  commandToWs(value);
+  if (value === "") {
+    console.error("no value in input field");
+  } else {
+    console.log("last command: " + value);
+    commandToWs(value);
+  }
+  
 };
 
 function grabCommants() {

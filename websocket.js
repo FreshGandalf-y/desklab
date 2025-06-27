@@ -42,6 +42,13 @@ function setupWebSocket(server) {
                 const theLastCommand = data.data.theLastCommand;
                 
                 saveMessage({ myusrName, theLastCommand });
+                try {
+                  const response = await readMessages({type: 'lastMsgResponse', time: 'last 1 message' });
+                  ws.send(JSON.stringify({type: 'chatResponse', response}));
+                } catch (err){
+                  console.error("in websocket.js:", err)
+                } 
+
               } catch (error){
                   console.error("mistake:", error); 
               };

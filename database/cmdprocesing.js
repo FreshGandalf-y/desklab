@@ -45,6 +45,8 @@ async function readMessages(jsoninput) {
   }
 
   switch (jsoninput.time) {
+    case "last 1 message":
+      return readSQL(1);
     case "last 20 messages":
       return readSQL(20);
     case "last 50 messages":
