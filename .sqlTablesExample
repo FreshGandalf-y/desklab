@@ -1,0 +1,21 @@
+Database chatchronic
+
+	Table openchat
+	CREATE TABLE IF NOT EXISTS openchat (
+  		id INT AUTO_INCREMENT PRIMARY KEY,
+  		username VARCHAR(100) NOT NULL,
+  		lastcommand TEXT NOT NULL,
+  		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	);
+
+	Table blogfeed
+	CREATE TABLE IF NOT EXISTS blogfeed (
+  		id INT AUTO_INCREMENT PRIMARY KEY,
+  		title VARCHAR(255) NOT NULL,
+  		slug VARCHAR(255) NOT NULL UNIQUE,
+  		description TEXT,
+  		content TEXT,
+  		published_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  		author VARCHAR(100)
+	);
+
